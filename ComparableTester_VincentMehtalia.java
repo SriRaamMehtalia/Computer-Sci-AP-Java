@@ -30,12 +30,26 @@ public class ComparableTester_VincentMehtalia
     octopus.speak("Now you see me. Now you do not.\n");
     squid.speak("I like calamarie.\n");
     
+    ArrayList<Animal> zoo = new ArrayList<Animal>();
+    zoo.add(nautilus);
+    zoo.add(octopus);
+    zoo.add(squid);
+    
+    System.out.println("Sorted animals: ");
+    Collections.sort(zoo);
+    for(Animal animal: zoo)
+    {
+      System.out.println(animal + " ");
+    }
+    
+    /*
     for(int i = 0; i < myZoo.getSize()-1; i++)
     {
       System.out.println(i+1 + ". " + myZoo.getAnimal(i).getName()
              + " compared to " + myZoo.getAnimal(i+1).getName()
              + ": " + myZoo.getAnimal(i).compareTo(myZoo.getAnimal(i+1)));
     }
+    */
   }
 }
 
@@ -89,6 +103,11 @@ abstract class Animal implements Comparable
   {
     Animal animal = (Animal) obj;
     return age - animal.getAge();
+  }
+  
+  public String toString()
+  {
+    return name + " ";
   }
   
   public String getGenus()

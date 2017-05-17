@@ -2,8 +2,10 @@
 //Inherits-A9: Zoo
 
 import java.util.ArrayList;
+import java.util.Collections;
 
-class Animal
+
+class Animal 
 {
    private String species;
    private String name;
@@ -48,7 +50,6 @@ class Animal
          System.out.println(sound);
          System.out.println("");
       }
-      
       
       
       public String setFood(String rawr) {
@@ -118,7 +119,7 @@ class Snake extends Animal
 
 }
 
-public class ZooTester_Mehtalia
+public class ZooTester_Mehtalia 
 {
    public static void main(String[] args) {
       
@@ -131,6 +132,7 @@ public class ZooTester_Mehtalia
       Animal Kaa = new Snake("Snake", "Kaa", 10);
       Animal Caesar = new Gorilla("Gorilla", "Caesar", 20);
       Animal Mee = new Meerkat("Meerkat", "James", 7);
+      Animal x = (Animal)Mee;
       
       
       ellie.setSound("WYAHHHHHHH");
@@ -161,6 +163,9 @@ public class ZooTester_Mehtalia
           a1.get(i).speak();
           a1.get(i).sayFood();
       }
+      
+      x.setSound("JJ");
+      x.speak(); 
       
    }
 }

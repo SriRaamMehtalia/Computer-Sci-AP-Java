@@ -1,43 +1,122 @@
 //SriRaam A. Mehtalia Period 5
-//AList-A4: Card Class(11s)
+//AList-A6: Deck Class
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
- * This is a class that tests the Card class.
+ * This is a class that tests the Deck class.
  */
-public class CardTester_Mehtalia {
+public class DeckTester_Mehtalia {
 
- /**
-  * The main method in this class checks the Card operations for consistency.
-  * @param args is not used.
-  */
- public static void main(String[] args) 
-   {
-  /* *** TO BE IMPLEMENTED IN ACTIVITY 1 *** */
-      //Cards created
-      Card card1 = new Card("King", "spades", 10);
-      Card card2 = new Card("King", "spades", 10);
-      Card card3 = new Card("five", "diamonds", 5);
-      
-      //Tests of methods: matching, accessor methods, etc
-      System.out.println("Comparing card 1 and card 2: " + card1.matches(card2));
-      System.out.println("Comparing card 2 and card 3: " + card2.matches(card3));
-      System.out.println("card 1 is suit " + card1.suit());
-      System.out.println("card 1 is rank " + card1.rank());
-      System.out.println("card 1 is value " + card1.pointValue());
-      System.out.println("card 2 is suit " + card2.suit());
-      System.out.println("card 2 is rank " + card2.rank());
-      System.out.println("card 2 is value " + card2.pointValue());
-      System.out.println("card 3 has suit " + card3.suit());
-      System.out.println("card 3 has rank " + card3.rank());
-      System.out.println("card 3 is value " +  card3.pointValue());
-      
-      //ToString method tests
-      System.out.println(card1.toString());
-      System.out.println(card2.toString());
-      System.out.println(card3.toString());
- }
+    /**
+     * The main method in this class checks the Deck operations for consistency.
+     *    @param args is not used.
+     */
+    public static void main(String[] args) {
+        String[] ranks = {"Ace", "king", "Queen", "jack", "ten", "9", "8", "7", "6", "5", "4", "3", "2"};
+        String[] suits = {"diamond", "spades", "hearts", "clubs"};
+        int[] values = {10,10,10,10,9,8,7,6,5,4,3,2,1};
+        
+        Deck deck1 = new Deck(ranks, suits, values);
+        
+        
+        
+    }
 }
 
+class Deck {
+ 
+ private ArrayList<Card> cards;
+
+ private int size;
+
+
+ public Deck(String[] ranks, String[] suits, int[] values) {
+  for(int i = 0; i < ranks.length; i++) {
+   for(String s : suits) {
+    Card newCard = new Card(ranks[i], s, values[i]);
+    cards.add(newCard);
+   }
+  }
+  size = cards.size();
+ }
+
+
+ /**
+  * Determines if this deck is empty (no undealt cards).
+  * @return true if this deck is empty, false otherwise.
+  */
+ public boolean isEmpty() {
+  if(cards.size() == 0) {
+   return true;
+  } else {
+   return false;
+  }
+ }
+
+ /**
+  * Accesses the number of undealt cards in this deck.
+  * @return the number of undealt cards in this deck.
+  */
+ public int size() {
+  return size;
+ }
+
+ /**
+  * Randomly permute the given collection of cards
+  * and reset the size to represent the entire deck.
+  */
+ public void shuffle() {
+  /* *** TO BE IMPLEMENTED IN ACTIVITY 4 *** */
+ }
+
+ /**
+  * Deals a card from this deck.
+  * @return the card just dealt, or null if all the cards have been
+  *         previously dealt.
+  */
+ public Card deal() {
+  if (cards.size() == 0) return null;
+  size--;
+  return cards.get(size);
+ }
+
+ /**
+  * Generates and returns a string representation of this deck.
+  * @return a string representation of this deck.
+  */
+ @Override
+ public String toString() {
+  String rtn = "size = " + size + "\nUndealt cards: \n";
+
+  for (int k = size - 1; k >= 0; k--) {
+   rtn = rtn + cards.get(k);
+   if (k != 0) {
+    rtn = rtn + ", ";
+   }
+   if ((size - k) % 2 == 0) {
+    // Insert carriage returns so entire deck is visible on console.
+    rtn = rtn + "\n";
+   }
+  }
+
+  rtn = rtn + "\nDealt cards: \n";
+  for (int k = cards.size() - 1; k >= size; k--) {
+   rtn = rtn + cards.get(k);
+   if (k != size) {
+    rtn = rtn + ", ";
+   }
+   if ((k - cards.size()) % 2 == 0) {
+    // Insert carriage returns so entire deck is visible on console.
+    rtn = rtn + "\n";
+   }
+  }
+
+  rtn = rtn + "\n";
+  return rtn;
+ }
+}
 
 class Card 
 {

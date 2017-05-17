@@ -1,3 +1,5 @@
+//SriRaam A. Mehtali
+
 import java.awt.*;
 import java.awt.font.*;
 import java.awt.geom.*;
@@ -97,6 +99,49 @@ public class Picture extends SimplePicture
       }
     }
   }
+  
+  public void keepOnlyBlue()
+  {
+    Pixel[][] pixels = this.getPixels2D();
+    for (Pixel[] rowArray : pixels)
+    {
+      for (Pixel pixelObj : rowArray)
+      {
+         pixelObj.setRed(0);
+         pixelObj.setGreen(0);
+      }
+    }
+  }
+  
+  public void negate()
+  {
+    Pixel[][] pixels = this.getPixels2D();
+    for (Pixel[] rowArray : pixels)
+    {
+      for (Pixel pixelObj : rowArray)
+      {
+        pixelObj.setRed(pixelObj.getRed() - 255);
+        pixelObj.setGreen(pixelObj.getGreen() - 255);
+        pixelObj.setBlue(pixelObj.getBlue() - 255);
+      }
+    }
+  }
+  
+  public void grayscale()
+  {
+    Pixel[][] pixels = this.getPixels2D();
+    for (Pixel[] rowArray : pixels)
+    {
+      for (Pixel pixelObj : rowArray)
+      {   
+        int avg = (int)((pixelObj.getRed() + pixelObj.getGreen() + pixelObj.getBlue()) / 3);
+        pixelObj.setRed(avg);
+        pixelObj.setBlue(avg);
+        pixelObj.setGreen(avg);
+      }
+    }
+  }
+
   
   /** Method that mirrors the picture around a 
     * vertical mirror in the center of the picture
